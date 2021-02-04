@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/html" xmlns="http://www.w3.org/1999/html" lang="es-MX" xml:lang="es-MX">
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/contratacionesabiertas/static/bower_components/font-awesome/css/font-awesome.min.css">
+    <!-- Bootstrap core CSS -->
+    <link href="/contratacionesabiertas/static/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/contratacionesabiertas/static/bower_components/bootstrap-select/dist/css/bootstrap-select.css" rel="stylesheet">
+    <link rel='stylesheet' href='/contratacionesabiertas/static/stylesheets/main.css' />
+    <link rel='stylesheet' href='/contratacionesabiertas/static/stylesheets/style_d3bubble.css' />
+    <link rel="stylesheet" type="text/css" href="/contratacionesabiertas/static/bower_components/jqplot/jquery.jqplot.css" />
+    <link rel="stylesheet" href="/contratacionesabiertas/static/stylesheets/dashboard.css">
+    <link rel="import" href="<%= process.env.CDN_URL %>/bower_components/polymer/polymer.html">    
+    <link rel="import" href="/contratacionesabiertas/static/inai-navbar/dgm-navbar.html">
+    <link rel="import" href="/contratacionesabiertas/static/inai-footer/dgm-footer.html">
+    <link rel="stylesheet" type="text/css" href="/contratacionesabiertas/static/bower_components/tooltipster/dist/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="/contratacionesabiertas/static/bower_components/tooltipster-follower/dist/css/tooltipster-follower.min.css" />
+	
+	<style no-shim>        
+        .navbar-default   { background-color: #FFFFFF; border: none; top: 158.5px; }
+
+        p{
+            text-align: justify;
+        }
+        table,th,td{
+            border: 1px solid black;
+        }
+        table{
+            width: 70%;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        th,td{
+            padding: 15px 15px 0;
+            text-align: center;
+        }
+        th{
+            color: #FFFFFF;
+            background-color: #4d4d4d;
+        }
+        .th2{
+            padding: 15px 15px 15px;
+            background-color: #e04444;
+        }
+        .th3{
+            padding: 15px 15px 15px;
+            background-color: #8e7cc3;
+        }
+        .td2{
+            padding: 15px 15px 15px;
+            background-color: #f3f3f3;
+        }
+        .td3{
+            padding: 15px 15px 15px;
+            background-color: #f3f3f3;
+        }
+        .menuTopBar{
+            text-align: center;
+            background-color: #3a95ff;
+            position: fixed;
+            z-index: 4;
+            top: 106.38px;
+            max-width: none;
+            width: 100%;
+            padding: 0 10% 0;
+        }
+        .menuTopBar a{
+            height: 52px;
+            text-decoration: none;
+            font-size: 15px;
+            vertical-align: middle;
+            color: #FFFFFF;
+        }
+        .menuTopBar .botonMenuTop:hover{
+            background-color: #87beff;
+        }
+        .menuTopBar .botonMenuTop{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            background-color: #3a95ff;
+            color: #ffffff;
+        }
+        @media (max-width: 991px) {
+            body {
+                margin: 150px 0 0;
+            }
+            .menuTopBarS{
+                padding: 0 0 0;
+                background-color: black;
+            }
+        }
+    </style>
+
+    <title>Política de publicación</title>
+</head>
+
+<body>
+    <dgm-navbar></dgm-navbar>
+    
+    <div class="menuTopBar menuTopBarS">
+        <div class="col-xs-3 col-md-4" style="padding: 0 0 0;">
+            <a href="/contratacionesabiertas/contratos/" class="botonMenuTop">Inicio</a>
+        </div>
+        <div class="col-xs-3 col-md-4" style="padding: 0 0 0;">
+            <a href="/contratacionesabiertas/politicadepublicacion" class="botonMenuTop" style="background-color: #87beff">Política de publicación</a>
+        </div>
+        <div class="col-xs-3 col-md-4" style="padding: 0 0 0;">
+            <a href="https://www.datosabiertos.gob.pa/" class="botonMenuTop" target="_blank">Datos abiertos</a>
+        </div>
+    </div>
+
+    <nav class="navbar navbar-default navbar-fixed-top hidden-sm hidden-xs">              
+            <div class="container">   
+                    <ul class="breadcrumb">
+                        <li><a href="/contratacionesabiertas/"><i class="glyphicon glyphicon-home"></i></a></li>
+                        <li><a href="/contratacionesabiertas/contratos/">Autoridad Nacional de Transparencia y Acceso a la Información</a></li>
+                        <li><a style="color: #37a3f8" href="#">Política de publicación</a></li>
+                    </ul>
+            </div>               
+     </nav>
+    
+    <div class="breadcrumb-container">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <ul class="breadcrumb">
+                 <!--     <li><a href="/contratacionesabiertas/"><i class="glyphicon glyphicon-home"></i></a></li>
+                      <li><a href="/contratacionesabiertas/contratos/">Instituto Nacional de Transparencia, Acceso a la Información y Protección de Datos Personales</a></li>
+                      <li><a href="#">Acerca</a></li>  -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 post">
+                <div ng-bind-html="content" class="content ng-binding">
+                    <h1 style="text-align: center;">Política de Publicación: Guía de Usuario - ANTAI 
+                                                <br>Para datos publicados usando el Estándar de Datos de Contrataciones Abiertas</h1>
+                </div>
+                <p>Las políticas de publicación ayudan a los usuarios a entender los datos OCDS de un publicador, incluyendo el propósito de la publicación, cómo se generan los datos, información acerca del alcance y formatos, como pueden reutilizar los datos y cómo pueden contactar con el publicador. Las políticas de publicación deben estar disponibles en una página web pública, y se debe agregar el enlace a esta página a todos los paquetes de entregas y registros OCDS y a los portales web OCDS del publicador.</p>
+                <br>
+                <h2><strong>1. Propósito de la publicación</strong></h2>
+                <br>
+                <p>La publicación de datos de contrataciones públicas disponible en el de <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank"><strong>http://contratacionesabiertas.antai.gob.pa/</strong></a> tiene como objetivo garantizar que toda la información de contrataciones públicas del estado durante el estado de emergencia por el SARS-Covid-19, además de las contrataciones realizadas por nuestra entidad, y, que de esta forma sea accesible en línea y en formatos de datos abiertos, de modo que pueda ser utilizada, reutilizada y redistribuida por cualquier interesado.</p>
+                <br>
+                <h4><strong>1.1 Usos de los datos</strong></h4>
+                <p><strong>La Autoridad Nacional de Transparencia y Acceso a la Información</strong> está trabajando para utilizar datos de contrataciones abiertas con el fin de promover la transparencia y <strong>rendir cuentas sobre las contrataciones realizadas durante el estado de emergencia por el SARS-Covid-19.</strong>
+                    <br>
+                    <br>
+                    Usar datos abiertos, estandarizados y estructurados de contrataciones abiertas también puede ayudar a cualquier parte interesada a:
+                    <ul style="list-style-type: disc;">
+                        <li>tener acceso a la información sobre las compras realizadas de forma estandarizada y de fácil manejo,</li>
+                        <li>prevenir el fraude y la corrupción,</li>
+                        <li>promover análisis más inteligentes y mejores soluciones para problemas públicos.</li>
+                    </ul>
+                </p>
+                <br>
+                <h2><strong>2. Detalles de la Publicación</strong></h2>
+                <br>
+                <p>Esta sección explica los detalles de la publicación de datos OCDS. Las secciones incluidas son: la creación de conjuntos de datos (datasets) OCDS, portales de datos y formatos de publicación, frecuencia de las actualizaciones, y una lista de las vías disponibles para acceder a los datos.</p>
+                <br>
+                <h4><strong>2.1 Creación de Conjuntos de Datos OCDS</strong></h4>
+                <p>Nuestros datos son actualizados todas las semanas, a través de un proceso que los extrae del portal www.panamacompra.gob.pa, los convierte a <strong>versión OCDS 1.1.4</strong> y los indexa para búsquedas y descarga. La información disponible en <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank"><strong>http://contratacionesabiertas.antai.gob.pa/</strong></a> está sujeta a estas actualizaciones, mientras que nuestras descargas masivas disponibles en <a href="https://www.datosabiertos.gob.pa/" target="_blank"><strong>https://www.datosabiertos.gob.pa/</strong></a> son actualizadas mensualmente.</p>
+                <p>Los siguientes diagramas muestran ejemplos de arquitecturas de sistemas para generar datos OCDS. Estos ejemplos son tomados de <a href="https://www.open-contracting.org/2016/06/30/getting-data-together-routes-towards-ocds-api/"><strong>esta entrada en el blog de Open Contracting (en inglés).</strong></a></p>
+                <br>
+                <center>
+                    <img src="/contratacionesabiertas/static/images/politica.png">
+                </center>
+                <br>
+                <p style="text-align: center"><strong>Nota:</strong> estos diagramas deben considerarse como una inspiración; las políticas de publicación deben contener diagramas que reflejen los sistemas y procesos del publicador.</p>
+                <br>
+                <h4><strong>2.2 Accediendo a los datos</strong></h4>
+                <p><strong>La Autoridad Nacional de Transparencia y Acceso a la Información</strong> disponibiliza datos OCDS en varios formatos para satisfacer las necesidades de diferentes usuarios. Están disponibles los siguientes formatos:</p>
+                <table style="width: 100%">
+                    <tr>
+                        <th class="th2">Formato</th>
+                        <th class="th2">Descripción</th>
+                        <th class="th2">Enlace(s)</th>
+                    </tr>
+                    <tr>
+                        <td class="td2">Descarga individual de Registro EDCA (JSON)</td>
+                        <td class="td2">El paquete de registros de cada proceso de contratación en formato JSON</td>
+                        <td class="td2">Descarga disponible en el listado de contrataciones en <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank">http://contratacionesabiertas.antai.gob.pa/</a> </td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Descarga individual de documento (PDF)</td>
+                        <td class="td2">Archivos imprimibles que contienen información relevante por proceso de contratación.</td>
+                        <td class="td2">Descarga disponible en el listado de contrataciones en  <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank">http://contratacionesabiertas.antai.gob.pa/</a> </td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Descarga de Liberaciones EDCA (JSON)</td>
+                        <td class="td2">Archivos segmentados por fecha de entrega.
+                            <br>
+                            Ideal para análisis y/o almacenamiento en una base de datos de documentos.</td>
+                        <td class="td2"></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Descarga masiva de Registros EDCA (JSON)</td>
+                        <td class="td2">Archivos segmentados por fecha inicial de liberación.
+                            <br>
+                            Ideal para análisis y/o almacenamiento en una base de datos de documentos.</td>
+                        <td class="td2"></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Descarga de Entregas EDCA (CSV)</td>
+                        <td class="td2">Archivo ZIP que contiene una serialización de datos OCDS en múltiples tablas CSV, segmentado por fecha de entrega.
+                            <br>
+                            Ideal para análisis en software compatibles con datos en planillas y/o almacenamiento en bases de datos relacionales.</td>
+                        <td class="td2"></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Descarga de Registros EDCA (CSV)</td>
+                        <td class="td2">Archivo ZIP que contiene una serialización de datos OCDS en múltiples tablas CSV, segmentado por fecha inicial de entrega.
+                            <br>
+                            Ideal para análisis en software compatibles con datos en planillas y/o almacenamiento en bases de datos relacionales.</td>
+                        <td class="td2"></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Descarga de Liberaciones EDCA (XLSX)</td>
+                        <td class="td2">Archivo ZIP que contiene todos los procesos de contratación organizado por pestañas en formato XLSX.</td>
+                        <td class="td2"></td>
+                    </tr>
+                </table>
+                <br>
+                <h1><strong>Portal de Contrataciones Abiertas - <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank">http://contratacionesabiertas.antai.gob.pa/</a></strong></h1>
+                <p>
+                    <strong>La Autoridad Nacional de Transparencia y Acceso a la Información</strong> provee un portal de Contrataciones Abiertas para apoyar la exploración y uso de datos de contrataciones en el siguiente enlace:
+                </p>
+                <p style="text-align:center;">
+                    <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank">http://contratacionesabiertas.antai.gob.pa/</a> </strong>
+                </p>
+                <p>
+                    El portal provee funciones de búsqueda, filtros y visualizaciones para ayudar a los usuarios a explorar las etapas del proceso de contrataciones. Los usuarios pueden buscar y filtrar de acuerdo <strong>al tipo de procedimiento de selección de contratista, entidad, monto y otros.</strong>
+                </p>
+                <br>
+                <h4><strong>3. Alcance de los datos </strong></h4>
+                <br>
+                <table style="width: 80%">
+                    <tr>
+                        <td class="td2">Fechas</td>
+                        <td class="td2">2020-03-10 en adelante</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Compradores</td>
+                        <td class="td2">Todas las agencias gubernamentales locales y centrales</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Valores</td>
+                        <td class="td2">Todos aquellos contratos de Gobierno Central y gobierno local.</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Tipos de Procesos</td>
+                        <td class="td2">Licitaciones abiertas, selectivas y aquellas realizadas por procedimiento especial o excepcional.</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Etapas</td>
+                        <td class="td2">De acuerdo al numeral 7 del artículo 6 de la Ley 33, publicamos datos de licitaciones y adjudicaciones por cada proceso de contratación. Adicionalmente proveemos la etapa de Contratación cuando esté disponible en nuestro alcance actual.</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Historial de Cambios</td>
+                        <td class="td2">Un historial de cambios por cada proceso de contratación es proveído a través de entregas asociadas a cada identificador de contrato (OCID). Esto es publicado diariamente, como se menciona en la sección “Creación de conjuntos de datos OCDS”.</td>
+                    </tr>
+                </table>
+                <br>
+                <p>Para un detalle de los datos implementados consultar el Anexo 1.</p>
+                <br>
+                <h4><strong>3.1 Exclusiones y Omisiones</strong></h4>
+                <p>El alcance de los datos excluidos de la publicación en esta política proviene de las disposiciones en el artículo 13 y 14 de la Ley 6. <a href="https://www.antai.gob.pa/wp-content/uploads/2015/04/Ley-6-de-22-enero-2002.pdf." target="_blank"><strong>https://www.antai.gob.pa/wp-content/uploads/2015/04/Ley-6-de-22-enero-2002.pdf.</strong></a>.</p>
+                <p>Los datos serán excluidos de las publicaciones OCDS cuando la exposición de los mismos sea de:</p>
+                <dd style="text-indent: 2em;">i. <strong>Carácter confidencial </strong></dd>
+                <dd style="text-indent: 2em;">ii. <strong>Acceso restringido</strong></dd>
+                <br>
+                <h4><strong>3.2 Conceptos Legales y Datos OCDS</strong></h4>
+                <p>Los procesos de adquisición y la terminología usada en <strong>Panamá</strong> están documentados <a href="https://www.panamacompra.gob.pa/Inicio/#!/" target="_blank"><strong>www.panamacompra.gob.pa.</strong></a>  Para ayudar a los usuarios de nuestros datos, proveemos la documentación de cómo estos se corresponden con la estructura y campos de nuestra publicación OCDS.</p>
+                <p><strong>Panamá</strong> también tiene requerimientos legales que exigen la publicación de información. Actualmente, cumplimos con estos requerimientos a través de la publicación de datos OCDS. Cualquier interesado en los detalles de los requerimientos puede encontrar información en los siguientes enlaces:</p>
+                <ul style="list-style-type: disc;">
+                    <li><a href="https://www.panamacompra.gob.pa/Inicio/#!/legislacion" target="_blank"><strong>https://www.panamacompra.gob.pa/Inicio/#!/legislacion</strong></a></li>
+                    <li><a href="https://www.antai.gob.pa/legislacion/" target="_blank"><strong>https://www.antai.gob.pa/legislacion/</strong></a></li>
+                </ul>
+                <p>Para asistir a los usuarios de datos que busquen información en el contexto de estos requerimientos legales, proveemos documentación adicional, que explica dónde puede encontrarse esta información dentro de nuestra publicación OCDS.</p>
+                <br>
+                <h4><strong>4. Códigos, Listas de Códigos y Extensiones usados en la Publicación de Datos</strong></h4>
+                <br>
+                <p>Los datos incluyen los siguientes códigos adicionales:</p>
+                <table style="width: 100%">
+                    <tr>
+                        <th class="th2">Lista de códigos</th>
+                        <th class="th2">Código</th>
+                        <th class="th2">Título</th>
+                        <th class="th2">Descripción</th>
+                    </tr>
+                    <tr>
+                        <td rowspan="5" class="td2">Tipos de documentos</td>
+                        <td class="td2">request</td>
+                        <td class="td2">Requisición</td>
+                        <td class="td2">Requisición</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">unsuccessfulProcedureNotice</td>
+                        <td class="td2">Acta de fallo (desierto)</td>
+                        <td class="td2">Documento formal que  indica que el fallo ha sido declarado desierto.  Este puede ser un enlace a un documento descargable, a un sitio web o a una gaceta oficial la cual contiene el aviso.</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">contractText</td>
+                        <td class="td2">Texto del contrato</td>
+                        <td class="td2">El texto del contrato</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">resolutions</td>
+                        <td class="td2">Resoluciones</td>
+                        <td class="td2">Documentos legales emitidos por la entidad a fin de plasmar sus decisiones. Resolución que nombra la comisión evaluadora, Resolución que adjudica, resolución que declara desierto el acto, resolución que aprueba la licitación.</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">notes</td>
+                        <td class="td2">Notas</td>
+                        <td class="td2">Documentación con información enviada por parte de la entidad o del contratista.</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Esquema de clasificación de ítems</td>
+                        <td class="td2">LMAP</td>
+                        <td class="td2">Listado de Materiales Activos de Panamá</td>
+                        <td class="td2">Listado de Materiales Activos de Panamá (LMAP)</td>
+                    </tr>
+                </table>
+                <br>
+                <h4><strong>Lista de Extensiones</strong></h4>
+                <table style="width: 100%">
+                    <tr>
+                        <th class="th2">Nombre</th>
+                        <th class="th2">Categoría</th>
+                        <th class="th2">Descripción</th>
+                        <th class="th2">Documentación</th>
+                    </tr>
+                    <tr>
+                        <td class="td2">Request for quotes</td>
+                        <td class="td2">Solicitudes de cotizaciones</td>
+                        <td class="td2">Una lista de solicitudes de cotizaciones relacionadas con el proceso de planificación</td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_requestForQuotes_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_requestForQuotes_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Payment method</td>
+                        <td class="td2">Método de pago</td>
+                        <td class="td2">El método de pago utilizado para realizar la transacción. Se deben utilizar los valores de la lista de códigos paymentMethod </td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_paymentMethod_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_paymentMethod_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Clarification meetings</td>
+                        <td class="td2">Reuniones de aclaración</td>
+                        <td class="td2">Una lista de las reuniones de aclaraciones relacionadas con la sección de licitación.</td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_clarificationMeetings_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_clarificationMeetings_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Taxes</td>
+                        <td class="td2">Importe neto</td>
+                        <td class="td2">Cantidad como un número, sin impuestos</td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_taxes_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_taxes_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Public notices</td>
+                        <td class="td2">Avisos públicos</td>
+                        <td class="td2">Para hitos en los que se especifican aspectos relacionados con las obras públicas, como el cierre de calles, cambios de tráfico, etc.</td>
+                        <td class="td2"><a href="https://standard.open-contracting.org/review/data/9837a127-c1ec-45e4-a674-d688b91fe297" target="_blank">https://standard.open-contracting.org/review/data/9837a127-c1ec-45e4-a674-d688b91fe297</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Implementation status</td>
+                        <td class="td2">Estado de implementación</td>
+                        <td class="td2">El estado actual de la implementación del contrato en función de la lista de códigos del estado de implementación.</td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_implementationStatus_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_implementationStatus_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Award rationale</td>
+                        <td class="td2">Justificación del premio</td>
+                        <td class="td2">Un breve resumen de las razones para hacer este premio específico, y / o seleccionar el proveedor en particular, proporcionado en texto libre. Se pueden proporcionar más detalles en los documentos adjuntos.</td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_awardRationale_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_awardRationale_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Name breakdown</td>
+                        <td class="td2">Personalidad legal</td>
+                        <td class="td2">Especifique la personalidad jurídica de la entidad que participa en este proceso de contratación. Usando la lista de códigos legalPersonality.</td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_nameBreakdown_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_nameBreakdown_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Surveillance mechanisms</td>
+                        <td class="td2">Mecanismos de vigilancia</td>
+                        <td class="td2">Los mecanismos de vigilancia utilizados en este proceso de contratación. Los mecanismos deben tomarse de la lista de códigos de vigilancia Mecanismos.</td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_surveillanceMechanisms_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_surveillanceMechanisms_extension</a> </td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Extended procurement category</td>
+                        <td class="td2">Adquisición de bienes</td>
+                        <td class="td2">Bienes muebles que deben incorporarse, adherirse o destinarse a una propiedad, que son necesarios para la realización de obras por administración directa, o aquellos provistos por agencias y entidades de acuerdo con el acuerdo en los contratos de obras públicas.</td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_extendedProcurementCategory_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_extendedProcurementCategory_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Contact point type</td>
+                        <td class="td2">Tipo de punto de contacto</td>
+                        <td class="td2">Especifique el tipo de punto de contacto utilizando la lista de códigos contactPointType.</td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_contactPointType_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_contactPointType_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Guarantees</td>
+                        <td class="td2">Garantía</td>
+                        <td class="td2">Información de la garantía utilizada para garantizar el cumplimiento de los términos de un contrato.</td>
+                        <td class="td2"><a href="https://github.com/contratacionesabiertas/ocds_guarantees_extension" target="_blank">https://github.com/contratacionesabiertas/ocds_guarantees_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Location</td>
+                        <td class="td2">Ubicación</td>
+                        <td class="td2">Comunicar la ubicación de la entrega del contrato propuesto o ejecutado es importante para muchos usuarios de los datos de contratación.</td>
+                        <td class="td2"><a href="https://extensions.open-contracting.org/en/extensions/location/master/" target="_blank">https://extensions.open-contracting.org/en/extensions/location/master/</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Additional Contact Points</td>
+                        <td class="td2">Puntos de contacto adicionales</td>
+                        <td class="td2">Para proporcionar múltiples puntos de contacto para una organización, o para proporcionar los idiomas disponibles de un punto de contacto.</td>
+                        <td class="td2"><a href="https://extensions.open-contracting.org/en/extensions/additionalContactPoint/master/" target="_blank">https://extensions.open-contracting.org/en/extensions/additionalContactPoint/master/</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Member Of</td>
+                        <td class="td2">Miembro de</td>
+                        <td class="td2">La propiedad se puede usar para indicar la relación entre una parte y otra parte, asociación o agrupación</td>
+                        <td class="td2"><a href="https://github.com/open-contracting-extensions/ocds_memberOf_extension" target="_blank">https://github.com/open-contracting-extensions/ocds_memberOf_extension</a></td>
+                    </tr>
+                    <tr>
+                        <td class="td2">Budget Breakdown</td>
+                        <td class="td2">Presupuesto descompuesto</td>
+                        <td class="td2">Agrega una matriz de desglose de presupuesto al objeto de presupuesto para desglosar un presupuesto por fuente y período</td>
+                        <td class="td2"><a href="https://extensions.open-contracting.org/en/extensions/budget/master/" target="_blank">https://extensions.open-contracting.org/en/extensions/budget/master/</a></td>
+                    </tr>
+                </table>
+                <br>
+                <h4><strong>5. Responsabilidad, Información de Contacto y Comentarios </strong></h4>
+                <p><strong>Dirección de Transparencia de la Autoridad Nacional de Transparencia y Acceso a la Información (ANTAI)</strong> es responsable de la publicación OCDS. Favor envíe sus comentarios y sugerencias a <strong>contratacionesabiertas@antai.gob.pa</strong> o a través del formulario disponible en <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank">http://contratacionesabiertas.antai.gob.pa/</a>. También puede contactarnos en la siguiente dirección y número de teléfono:</p>
+                <p><strong>legal@antai.gob.pa  o al teléfono: 527-9270.</strong></p>
+                <br><p>Todas las contribuciones con respecto a nuestros datos abiertos son bienvenidas e invitamos a los usuarios y el público en general a contactarnos con ideas de cómo podemos mejorar nuestros conjuntos de datos abiertos. En particular, las contribuciones sobre <strong>contrataciones abiertas</strong> son bienvenidas.</p>
+                <br><p>Después de enviar su contribución, nos pondremos en contacto con usted para confirmar la recepción de su mensaje y para pedir aclaraciones si es necesario. Los temas mencionados por los usuarios y el público en general son discutidos en <strong>reuniones programadas</strong> de acuerdo a nuestros planes de desarrollo futuros. Después de considerar su contribución, es posible que contactemos con usted para informarle de las acciones que hayan sido tomadas.</p>
+                <br>
+                <h4><strong>6. Licencia</strong></h4>
+                <p><strong>La Autoridad Nacional de Transparencia y Acceso a la información</strong> ha liberado los datos OCDS usando la licencia <a href="https://creativecommons.org/publicdomain/zero/1.0/deed.es_ES" target="_blank"><strong>https://creativecommons.org/publicdomain/zero/1.0/deed.es_ES.</strong></a> Esta otorga permiso a un usuario de datos a realizar lo siguiente:</p>
+                <br>
+                <ol>
+                    <li>el derecho a reproducir, adaptar, distribuir, interpretar, exhibir, comunicar y traducir una Obra;</li>
+                    <li>derechos morales retenidos por el/los autor/autores originales y/o el/los intérprete/s;</li>
+                    <li>derechos de publicidad y de privacidad pertenecientes a la imagen o parecido de una persona representado en una Obra;</li>    
+                    <li>derechos de protección contra la competencia desleal en relación a una Obra, sujeto a las limitaciones del párrafo 4(a), abajo;</li>
+                    <li>derechos para proteger la extracción, diseminación, uso y reuso de los datos en una Obra;</li>
+                    <li>derechos sobre bases de datos (tales como los que emergen bajo la Directiva 96/9/CE del Parlamento Europeo y del Consejo del 11 de marzo de 1996 sobre la protección legal de las bases de datos, y bajo cualquier implementación nacional de aquellos, incluyendo cualquier enmienda o versión posterior de dicha directiva); y</li>
+                    <li>otros derechos similares, equivalentes o correspondientes a lo largo del mundo basados en leyes o tratados aplicables, y cualquier implementación nacional de aquellos.</li>
+                </ol>
+                <br>
+                <p>El texto completo de la licencia puede encontrarse en <a href="https://creativecommons.org/publicdomain/zero/1.0/legalcode.es" target="_blank"><strong>https://creativecommons.org/publicdomain/zero/1.0/legalcode.es</strong></a></p>
+                <br>
+                <h4><strong>7. Planes de Desarrollo Futuro que afecten los Datos</strong></h4>
+                <p>La siguiente tabla resume nuestro mapa de ruta de planes de desarrollo futuro para nuestros datos OCDS</p>
+                <br>
+                <table style="width: 100%">
+                    <tr>
+                        <th class="th2">Fecha de actualización</th>
+                        <th class="th2">Descripción</th>
+                        <th class="th2">Propósito</th>
+                    </tr>
+                    <tr>
+                        <td class="td2">Coordinamos que la actualización de la plataforma <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank">http://contratacionesabiertas.antai.gob.pa/</a> se hará a un año de implementada.</td>
+                        <td class="td2">Los detalles que se actualizarán son: aspectos técnicos, tales como campos, corrección de errores e implementación de extensiones.</td>
+                        <td class="td2">Dado que en la primera etapa de implementación se han tomado en cuenta cierta cantidad de datos y creemos viable poder ampliar la herramienta, incorporando nuevos campos.</td>
+                    </tr>
+                </table>
+                <br>
+                <h4><strong>8. Renuncia de Responsabilidad</strong></h4>
+                <p>El acceso a <strong>contrataciones abiertas</strong> disponible en <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank">http://contratacionesabiertas.antai.gob.pa/</a>, no implica que la Autoridad Nacional de Transparencia y Acceso de Información, de aquí en adelante <strong>ANTAI</strong>, ha verificado la veracidad, exactitud, idoneidad, completitud o puntualidad de los datos proveídos a través de nuestro sitio. El contenido de esta página relativo a los procedimientos de adjudicación es responsabilidad de cada entidad contratante; con relación a pagos a proveedores, la información proviene de <strong>PanamaCompra</strong> en el caso que corresponda, y la <strong>ANTAI</strong> no puede asegurar que el contenido de la información es actualizada permanentemente, asumiendo que ello depende de los datos proveídos por las distintas entidades sujetas a la información publicada en <strong>PanamaCompra.gob.pa</strong>. La información contenida en los documentos que acompañan el proceso de adjudicación son versiones digitales de los documentos emitidos por las agencias del Estado, cualquier publicación constituye una compilación completa y fiel de los documentos emitidos por la entidad oficial, sin adiciones, borrados o correcciones de cualquier naturaleza. La <strong>ANTAI</strong> no es responsable de las decisiones tomadas a partir de la información publicada en <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank">http://contratacionesabiertas.antai.gob.pa/</a>, o por posibles daños causados al usuario visitante o a terceras partes debido a acciones que se hayan basado solamente en información obtenida en el sitio. La <strong>ANTAI</strong> puede llevar a cabo actualizaciones y modificaciones a la información contenida en <a href="http://contratacionesabiertas.antai.gob.pa/" target="_blank">http://contratacionesabiertas.antai.gob.pa/</a> o de su configuración o presentación, en cualquier momento y sin previo aviso.</p>
+                <br>
+                <h4>Anexo 1. Datos implementados</h4>
+                <p>En este anexo se detallan todos los datos publicados sobre los procesos de contratación en la emergencia COVID-19 realizadas por el gobierno de Panamá.</p>
+                <table style="width: 100%">
+                    <tr>
+                        <th class="th2">Ruta OCDS</th>
+                        <th class="th2">Nombre del campo OCDS</th>
+                        <th class="th2">Nombre del campo PC</th>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/id</td>
+                        <td class="td2">identificador de la licitación/ identificador de la adjudicación</td>
+                        <td class="td2">Número de Acto</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/title</td>
+                        <td class="td2">ítems/descripción</td>
+                        <td class="td2">Descripción</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">parties/id</td>
+                        <td class="td2">Actores involucrados - papeles del actor</td>
+                        <td class="td2">Unidad de compra</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">parties/name</td>
+                        <td class="td2">Actores involucrados - papeles del actor</td>
+                        <td class="td2">Entidad</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/tenderPeriod/startDate, tender/milestones/dateMet</td>
+                        <td class="td2">Fecha de inicio de la licitación</td>
+                        <td class="td2">Fecha de publicación</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/procurementMethodDetails</td>
+                        <td class="td2">detalles del método de contratación</td>
+                        <td class="td2">Modalidad de adjudicación</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/status</td>
+                        <td class="td2">estatus de la licitación</td>
+                        <td class="td2">Estado</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">planning/budget/budgetBreakdown/value/amount</td>
+                        <td class="td2">valor</td>
+                        <td class="td2">Precio de Referencia</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">planning/budget/id, planning/budget/budgetBreakdown/id</td>
+                        <td class="td2">desglose presupuestario</td>
+                        <td class="td2">Número de Partida Presupuestaria</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/procurementMethod</td>
+                        <td class="td2">detalle del metodo de contratación</td>
+                        <td class="td2">Tipo de Procedimiento</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">awards/suppliers/name, parties/name</td>
+                        <td class="td2">proveedor</td>
+                        <td class="td2">Proveedor</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">awards/value/amount, contracts/value/amount</td>
+                        <td class="td2">Valor total</td>
+                        <td class="td2">Monto Ofertado</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/mainProcurementCategory, tender/additionalProcurementCategories</td>
+                        <td class="td2">/objeto de la licitación/ objeto del contrato</td>
+                        <td class="td2">Objeto de la contratación</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">parties/address/streetAddress</td>
+                        <td class="td2">Actores involucrados - papeles del actor</td>
+                        <td class="td2">Dirección de la entidad</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/tenderPeriod/endDate</td>
+                        <td class="td2">medios para la recepción de las proposiciones - periodo de entrega de proposiciones</td>
+                        <td class="td2">fecha y hora máxima de recepción de expresiones de intereses</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/items/deliveryAddress/streetAddress</td>
+                        <td class="td2">Items</td>
+                        <td class="td2">lugar de recepción</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/items/deliveryAddress/region</td>
+                        <td class="td2">items del contrato - ubicación</td>
+                        <td class="td2">provincia de entrega</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">parties/contactPoint/name</td>
+                        <td class="td2">actores involucrados - papeles del actor</td>
+                        <td class="td2">datos de contacto / nombre</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">parties/contactPoint/telephone</td>
+                        <td class="td2">actores involucrados - papeles del actor</td>
+                        <td class="td2">datos de contacto / teléfono</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">parties/contactPoint/email</td>
+                        <td class="td2">actores involucrados - papeles del actor</td>
+                        <td class="td2">datos de contacto / correo electrónico</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/items/quantity</td>
+                        <td class="td2">items</td>
+                        <td class="td2">especificaciones/cantidad</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/items/unit/name</td>
+                        <td class="td2">items</td>
+                        <td class="td2">especificaciones/unidad de medida</td>
+                    </tr>
+                    <tr>
+                        <td class="td2">tender/items/description</td>
+                        <td class="td2">items</td>
+                        <td class="td2">especificaciones/descripción</td>
+                    </tr>
+                    <tr>
+                        <td class="td2"></td>
+                        <td class="td2">documentos</td>
+                        <td class="td2">documentos</td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+	<br>
+	<br>
+
+    <dgm-footer></dgm-footer>
+    <script src="/contratacionesabiertas/static/bower_components/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="/contratacionesabiertas/static/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="<%= process.env.CDN_URL %>/bower_components/webcomponentsjs/webcomponents-lite.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+</body>
+
+</html>
